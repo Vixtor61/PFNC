@@ -2,8 +2,13 @@ package com.uca.capas.pfnc.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.pfnc.domain.Alumno;
 import com.uca.capas.pfnc.domain.Cursa;
+import com.uca.capas.pfnc.domain.CursaKey;
 import com.uca.capas.pfnc.domain.Materia;
 import com.uca.capas.pfnc.service.AlumnoService;
 import com.uca.capas.pfnc.service.CursaService;
@@ -27,14 +33,14 @@ public class MateriaController {
 	
 	
 	
-	@RequestMapping(value="/cursa",method= RequestMethod.GET)
-	public ModelAndView  viewSaveCursa(@RequestParam(value="codigo") int id){
+	@RequestMapping(value="/cursa/{id}",method= RequestMethod.GET)
+	public ModelAndView  viewSaveCursa(@PathVariable("id") int id){
 
 				
 				
 		Alumno alumno = alumnoService.findOne(id);
 		
-		String fullName = alumno.getNombre()+ " "+ alumno.getApellido() ;
+		String fullName = alumno.getNombre()+ " " + alumno.getApellido() ;
 		Integer alumnoId = alumno.getAlumnoId();
 		ModelAndView mav = new ModelAndView();
 		List<Materia> materias = materiaService.findAll();
@@ -60,36 +66,26 @@ public class MateriaController {
 	}
 	
 	@RequestMapping(value="/cursa",method= RequestMethod.POST)
-	public ModelAndView  SaveCursa(@RequestParam(value="codigo") int id){
+	public ModelAndView  SaveCursa(@Valid @ModelAttribute Cursa cursa,BindingResult result,@RequestParam(value="alumnoId") int alumnoId,@RequestParam(value="materiaId") int materiaId){
+		
+		
+		
+		CursaKey cursaKey = new CursaKey(alumnoId,materiaId);
 
-				
-				
 					
 		ModelAndView mav = new ModelAndView();
-		List<Materia> materias = materiaService.findAll();
-	
-		
-		Cursa cursa = new Cursa();
-		
+
+		cursa.setId(cursaKey);
 		try {
-		
+			cursaService.save(cursa);
 		
 		} catch (Exception e) {
 			e.printStackTrace();
 			
-		
-
-			
-			
 		}
-				mav.addObject("materias",materias);
-				mav.addObject("cursa",cursa);
 				
-				mav.setViewName("agregarMateriaAlumno");
-				
-
-		 
-
+				mav.setViewName("index");
+			
 		return mav;
 	}
 	

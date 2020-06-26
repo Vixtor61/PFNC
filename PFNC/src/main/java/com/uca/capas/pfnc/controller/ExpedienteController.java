@@ -140,6 +140,25 @@ public class ExpedienteController {
 
 	        return clientes;
 	    }
+	   
+	   
+		//probando
+	   @RequestMapping( value="/getAlumnos",method= RequestMethod.GET)
+	    public ModelAndView  getAlumnos() throws ParseException {
+		  // Municipio mun = municipioRepository.getOne(municipioId);
+		   	 List<Alumno> alumnos =  alumnoService.findAll();
+		   	 
+		   	 
+		   	 ModelAndView mav = new ModelAndView();
+		   	 mav.addObject("alumnos",alumnos);
+		   	 mav.setViewName("listaAlumnos");
+		   	 
+	        return mav;
+	    }
+	   
+	   
+	   
+	   
 
 	
 	

@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cursa")
@@ -23,16 +24,30 @@ public class Cursa {
 	    @ManyToOne
 	    @MapsId("materia_id")
 	    @JoinColumn(name = "materia_id")
-	    private Materia course;
-
+	    private Materia materia;
+	    
+	    @NotNull
 	    @Column(name = "nota")
 	    private int nota;
-
+	    
+	    @NotNull
 	    @Column(name = "annio")
 	    private int annio;
-
+	    
+	    @NotNull
 	    @Column(name = "ciclo")
 	    private int ciclo;
+	    
+	    
+	    
+
+		public CursaKey getId() {
+			return id;
+		}
+
+		public void setId(CursaKey id) {
+			this.id = id;
+		}
 
 		public Alumno getAlumno() {
 			return alumno;
@@ -42,12 +57,14 @@ public class Cursa {
 			this.alumno = alumno;
 		}
 
-		public Materia getCourse() {
-			return course;
+		
+
+		public Materia getMateria() {
+			return materia;
 		}
 
-		public void setCourse(Materia course) {
-			this.course = course;
+		public void setMateria(Materia materia) {
+			this.materia = materia;
 		}
 
 		public int getNota() {
