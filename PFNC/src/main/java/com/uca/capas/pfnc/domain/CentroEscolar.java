@@ -16,7 +16,7 @@ public class CentroEscolar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private Integer centro_escolar_id;
+	private Integer centroEscolarId;
 	
 	@Column(name = "nombre")
 	private String nombre;
@@ -26,14 +26,17 @@ public class CentroEscolar {
 	@JoinColumn(name = "municipio_id")
 	private Municipio municipio;
 
+	
 
-	public Integer getCentro_escolar_id() {
-		return centro_escolar_id;
+
+	
+	public Integer getCentroEscolarId() {
+		return centroEscolarId;
 	}
 
 
-	public void setCentro_escolar_id(Integer centro_escolar_id) {
-		this.centro_escolar_id = centro_escolar_id;
+	public void setCentroEscolarId(Integer centroEscolarId) {
+		this.centroEscolarId = centroEscolarId;
 	}
 
 

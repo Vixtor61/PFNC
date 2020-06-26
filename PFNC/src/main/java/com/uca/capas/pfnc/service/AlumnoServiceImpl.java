@@ -24,4 +24,10 @@ public class AlumnoServiceImpl implements AlumnoService {
 		// TODO Auto-generated method stub
 		return alumnoRepository.getOne(id);
 		}
+
+		@Override
+		public void save(Alumno alumno) throws DataAccessException {
+			alumnoRepository.save(alumno);
+		
+		}
 }

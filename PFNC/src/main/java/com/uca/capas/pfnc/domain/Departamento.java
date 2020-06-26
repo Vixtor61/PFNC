@@ -16,20 +16,22 @@ public class Departamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private Integer departamento_id;
+	private Integer departamentoId;
 	
 	@Column(name = "nombre")
 	private String nombre;
 	
-	@OneToMany(mappedBy = "departamento_id",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "departamento",fetch = FetchType.EAGER)
 	private List<Municipio>  municipios;
 
-	public Integer getDepartamento_id() {
-		return departamento_id;
+		
+
+	public Integer getDepartamentoId() {
+		return departamentoId;
 	}
 
-	public void setDepartamento_id(Integer departamento_id) {
-		this.departamento_id = departamento_id;
+	public void setDepartamentoId(Integer departamentoId) {
+		this.departamentoId = departamentoId;
 	}
 
 	public String getNombre() {

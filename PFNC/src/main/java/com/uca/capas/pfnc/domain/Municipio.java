@@ -19,7 +19,7 @@ public class Municipio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private Integer departamento_id;
+	private Integer municipioId;
 	
 	@Column(name = "nombre")
 	private String nombre;
@@ -31,29 +31,33 @@ public class Municipio {
 
 
 	@OneToMany(mappedBy = "municipio",fetch = FetchType.EAGER)
-	private List<CentroEscolar>  centros_escolares;
+	private List<CentroEscolar>  centrosEscolares;
 	
 	
 	
 	
 	
-	public List<CentroEscolar> getCentros_escolares() {
-		return centros_escolares;
+
+
+
+
+	public Integer getMunicipioId() {
+		return municipioId;
 	}
 
 
-	public void setCentros_escolares(List<CentroEscolar> centros_escolares) {
-		this.centros_escolares = centros_escolares;
+	public void setMunicipioId(Integer municipioId) {
+		this.municipioId = municipioId;
 	}
 
 
-	public Integer getDepartamento_id() {
-		return departamento_id;
+	public List<CentroEscolar> getCentrosEscolares() {
+		return centrosEscolares;
 	}
 
 
-	public void setDepartamento_id(Integer departamento_id) {
-		this.departamento_id = departamento_id;
+	public void setCentrosEscolares(List<CentroEscolar> centrosEscolares) {
+		this.centrosEscolares = centrosEscolares;
 	}
 
 

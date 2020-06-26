@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
+
+<script type="text/javascript" th:src="@{/js/centros.js}"></script>
+
+
+<title>Nuevo Exprediente</title>
+</head>
+
+
+<body>
+	<div class="container-fluid">
+
+		<div class="row">
+			<div th:replace="commons/sidebarTest :: sidebar" />
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+
+
+				<h1>Ingresar Nuevo Expediente</h1>
+
+				<form th:action="@{/nuevoExpediente}" th:object="${alumno}"
+					method="post">
+
+
+
+					<div class="form-group">
+
+
+						<div class="input-group is-invalid">
+							<div class="input-group-prepend">
+								<span class="input-group-text">First and last name</span>
+							</div>
+
+
+
+							<input type="text" th:field="*{nombre}" placeholder="Juan"
+								class="form-control"> <input type="text"
+								th:field="*{apellido}" id="apellido" placeholder="Sanchez"
+								name="apellido" class="form-control">
+
+
+						</div>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{nombre}" style="color: #e81505"></span>
+
+						</div>
+						<div class="invalid-feedback">
+							<span th:errors="*{apellido}" style="color: #FF0000"></span>
+
+						</div>
+
+
+
+
+
+					</div>
+
+
+					<div class="form-group">
+
+
+
+
+						<div class="input-group is-invalid">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="validatedInputGroupPrepend">Edad</span>
+							</div>
+							<input type="date" th:field="*{fechaNacimiento}" id="edad"
+								placeholder="18" class="form-control" name="edad">
+						</div>
+						<div class="invalid-feedback">
+							<span th:errors="*{fechaNacimiento}" style="color: #FF0000"></span>
+						</div>
+
+
+					</div>
+
+
+					<!-- 
+			<fieldset class="form-group">
+				<div class="row">
+					<legend class="col-form-label col-sm-2 pt-0">Estado</legend>
+					<div class="col-sm-10">
+						<div class="form-check">
+							<input class="form-check-input" id="radio_true" type="radio"
+								th:field="*{estado}" th:value="${true}" checked> <label
+								class="form-check-label" for="radio_true"> Activo </label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" id="radio_false" type="radio"
+								th:field="*{estado}" th:value="${false}"> <label
+								class="form-check-label" for="radio_false"> Inactivo </label>
+						</div>
+
+					</div>
+				</div>
+			</fieldset>
+		 -->
+
+
+
+					<div class="form-group">
+
+						<div class="input-group is-invalid">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Direccion</span>
+							</div>
+
+							<input type="text" th:field="*{direccion}" placeholder="Juan"
+								class="form-control">
+
+
+						</div>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{direccion}" style="color: #e81505"></span>
+
+						</div>
+
+					</div>
+
+					<div class="form-group">
+
+						<div class="input-group is-invalid">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Tel Movil</span>
+							</div>
+
+							<input type="tel" th:field="*{telMovil}" class="form-control">
+
+
+						</div>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{telMovil}" style="color: #e81505"></span>
+
+						</div>
+
+					</div>
+
+
+					<div class="form-group">
+
+						<div class="input-group is-invalid">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Tel Fijo</span>
+							</div>
+
+							<input type="tel" th:field="*{telFijo}" class="form-control">
+
+
+						</div>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{telFijo}" style="color: #e81505"></span>
+
+						</div>
+
+					</div>
+
+					<div class="form-group">
+
+						<div class="input-group is-invalid">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Padre</span>
+							</div>
+
+							<input type="text" th:field="*{padre}" placeholder="Juan"
+								class="form-control">
+
+
+						</div>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{padre}" style="color: #e81505"></span>
+
+						</div>
+
+					</div>
+
+
+
+					<div class="form-group">
+
+						<div class="input-group is-invalid">
+							<div class="input-group-prepend">
+								<span class="input-group-text">madre</span>
+							</div>
+
+							<input type="text" th:field="*{madre}" placeholder="Juan"
+								class="form-control">
+
+
+						</div>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{madre}" style="color: #e81505"></span>
+
+						</div>
+
+					</div>
+
+
+					<div class="form-group">
+
+						<div class="input-group is-invalid">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Carnet</span>
+							</div>
+
+							<input type="text" th:field="*{carnet}" placeholder="Juan"
+								class="form-control">
+
+
+						</div>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{carnet}" style="color: #e81505"></span>
+
+						</div>
+
+					</div>
+
+					<!-- 
+				<div class="form-group">
+
+				<div class="input-group is-invalid">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Centro</span>
+					</div>
+
+					<input type="number" name="centro_id" 
+						class="form-control"> 
+
+
+				</div>
+
+				<div class="invalid-feedback">
+				<!--  	<span th:errors="*{centro_id}" style="color: #e81505"></span>
+				
+				</div>
+
+			</div>
+
+ -->
+					<div class="form-group">
+						<select class="form-control" name="municipio_id"
+							id="municipio_select_id">
+							<option value="none" selected disabled hidden>Select an
+								Option</option>
+							<option th:each="municipio_i : ${municipios}"
+								th:value="${municipio_i.municipioId}"
+								th:text="${municipio_i.nombre}"></option>
+						</select>
+
+					</div>
+
+					<div class="form-group">
+						<select class="form-control" name="centro_id"
+							id="centro_id_select">
+							<option value="none" selected disabled hidden>Select an
+								Option</option>
+						</select>
+
+					</div>
+
+
+
+
+					<div class="form-group">
+
+
+						<input type="submit" class="btn btn-primary" value="Guardar">
+
+					</div>
+
+				</form>
+			</main>
+		</div>
+
+	</div>
+</body>
+</html>
