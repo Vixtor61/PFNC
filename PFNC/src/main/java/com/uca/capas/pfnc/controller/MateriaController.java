@@ -30,64 +30,56 @@ public class MateriaController {
 	CursaService cursaService;
 	@Autowired
 	AlumnoService alumnoService;
-	
-	
-	
-	@RequestMapping(value="/cursa/{id}",method= RequestMethod.GET)
-	public ModelAndView  viewSaveCursa(@PathVariable("id") int id){
 
-				
-				
+	@RequestMapping(value = "/cursa/{id}", method = RequestMethod.GET)
+	public ModelAndView viewSaveCursa(@PathVariable("id") int id) {
+
 		Alumno alumno = alumnoService.findOne(id);
-		
-		String fullName = alumno.getNombre()+ " " + alumno.getApellido() ;
+
+		String fullName = alumno.getNombre() + " " + alumno.getApellido();
 		Integer alumnoId = alumno.getAlumnoId();
 		ModelAndView mav = new ModelAndView();
 		List<Materia> materias = materiaService.findAll();
-		
-		
+
 		Cursa cursa = new Cursa();
-		
+
 		try {
-		
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
-				
+
 		}
-		
-		mav.addObject("fullName",fullName);
-		mav.addObject("alumnoId",alumnoId);		
-		mav.addObject("materias",materias);
-		mav.addObject("cursa",cursa);		
+
+		mav.addObject("fullName", fullName);
+		mav.addObject("alumnoId", alumnoId);
+		mav.addObject("materias", materias);
+		mav.addObject("cursa", cursa);
 		mav.setViewName("agregarMateriaAlumno");
 
 		return mav;
 	}
-	
-	@RequestMapping(value="/cursa",method= RequestMethod.POST)
-	public ModelAndView  SaveCursa(@Valid @ModelAttribute Cursa cursa,BindingResult result,@RequestParam(value="alumnoId") int alumnoId,@RequestParam(value="materiaId") int materiaId){
-		
-		
-		
-		CursaKey cursaKey = new CursaKey(alumnoId,materiaId);
 
-					
+	@RequestMapping(value = "/cursa", method = RequestMethod.POST)
+	public ModelAndView SaveCursa(@Valid @ModelAttribute Cursa cursa, BindingResult result,
+			@RequestParam(value = "alumnoId") int alumnoId, @RequestParam(value = "materiaId") int materiaId) {
+
+		CursaKey cursaKey = new CursaKey(alumnoId, materiaId);
+
 		ModelAndView mav = new ModelAndView();
 
 		cursa.setId(cursaKey);
 		try {
 			cursaService.save(cursa);
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 		}
-				
-				mav.setViewName("index");
-			
+
+		mav.setViewName("index");
+
 		return mav;
 	}
-	
-	
+
 }

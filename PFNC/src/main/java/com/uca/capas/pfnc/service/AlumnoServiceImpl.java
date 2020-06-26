@@ -30,4 +30,11 @@ public class AlumnoServiceImpl implements AlumnoService {
 			alumnoRepository.save(alumno);
 		
 		}
+		
+		@Override
+		public List<Alumno> findByNombreOrApel(String nombre) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return alumnoRepository.findByNombreContainingIgnoreCaseOrApellidoContainingIgnoreCase(nombre,nombre);
+		}
+		
 }
