@@ -24,6 +24,7 @@ import com.uca.capas.pfnc.service.CentroEscolarService;
 import com.uca.capas.pfnc.service.MunicipioService;
 
 @Controller
+@RequestMapping("/coordinador")
 public class ExpedienteController {
 
 	@Autowired

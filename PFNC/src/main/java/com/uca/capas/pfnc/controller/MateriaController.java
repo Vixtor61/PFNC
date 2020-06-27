@@ -23,6 +23,7 @@ import com.uca.capas.pfnc.service.CursaService;
 import com.uca.capas.pfnc.service.MateriaService;
 
 @Controller
+@RequestMapping("/coordinador")
 public class MateriaController {
 	@Autowired
 	MateriaService materiaService;
@@ -62,7 +63,7 @@ public class MateriaController {
 
 	@RequestMapping(value = "/cursa", method = RequestMethod.POST)
 	public ModelAndView SaveCursa(@Valid @ModelAttribute Cursa cursa, BindingResult result,
-			@RequestParam(value = "alumnoId") int alumnoId, @RequestParam(value = "materiaId") int materiaId) {
+		@RequestParam(value = "alumnoId") int alumnoId, @RequestParam(value = "materiaId") int materiaId) {
 
 		CursaKey cursaKey = new CursaKey(alumnoId, materiaId);
 
