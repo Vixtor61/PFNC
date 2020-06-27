@@ -1,5 +1,7 @@
 package com.uca.capas.pfnc.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,7 @@ public class CuentaServiceImpl implements CuentaService {
 	@Autowired
 	CuentaRepository cuentaRepository;
 	@Override
-	public Cuenta findByUsername(String username) throws DataAccessException {
+	public Optional<Cuenta> findByUsername(String username) throws DataAccessException {
 		// TODO Auto-generated method stub
 		return cuentaRepository.findByUsername(username);
 	}
