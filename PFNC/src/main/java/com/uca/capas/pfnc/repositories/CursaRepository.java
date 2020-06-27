@@ -8,5 +8,6 @@ import com.uca.capas.pfnc.domain.Cursa;
 
 public interface CursaRepository extends JpaRepository<Cursa, Integer>{
 	
+	
 
 }
