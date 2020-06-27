@@ -108,14 +108,6 @@ public class ExpedienteController {
 	}
 
 	// Filtrar centros escolares por municipio
-	@RequestMapping(value = "/getCentrosbyMunicipio", method = RequestMethod.GET)
-	public @ResponseBody List<CentroEscolarDTO> getClientesFechaEstado(@RequestParam Integer municipioId)
-			throws ParseException {
-		
-		List<CentroEscolarDTO> clientes = centroEscolarService.filterByMunicipio(municipioId);
-
-		return clientes;
-	}
 
 	// probando
 	@RequestMapping(value = "/getAlumnos", method = RequestMethod.GET)

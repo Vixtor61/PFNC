@@ -41,7 +41,7 @@
 
 					<th:block th:each="alumno, row: ${alumnos}">
 						<tr>
-							<th><a th:href="@{'/cursa/' + ${alumno.alumnoId}}"> <i
+							<th><a th:href="@{'/coordinador/cursa/' + ${alumno.alumnoId}}"> <i
 									class="fas fa-edit fa-lg"></i>
 							</a></th>
 							<th th:text="${alumno.nombre}" />

@@ -8,7 +8,7 @@ app = {
     document.getElementById('municipio_select_id').addEventListener('change', function() {
         console.log('You selected: ', this.value);
 
-        let url=`/getCentrosbyMunicipio?municipioId=${this.value}`
+        let url=`/api/getCentrosbyMunicipio?municipioId=${this.value}`
 
       fetch(url)
                                 .then(res => res.json())
