@@ -25,7 +25,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    	auth.userDetailsService(userDetailsService);
+ 
+    	auth.authenticationProvider(authenticationProvider());
+    	
+    	
     }
 
     @Override
@@ -45,6 +48,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement().maximumSessions(1);
 
+    }
+    
+    @Bean
+    DaoAuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+
+        return daoAuthenticationProvider;
     }
 
 
