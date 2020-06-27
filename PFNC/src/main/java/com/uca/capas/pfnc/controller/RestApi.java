@@ -20,7 +20,7 @@ public class RestApi {
 	CentroEscolarService centroEscolarService;
 	
 
-	
+	// Filtrar centros escolares por municipio
 	@RequestMapping(value = "/getCentrosbyMunicipio", method = RequestMethod.GET)
 	public @ResponseBody List<CentroEscolarDTO> getClientesFechaEstado(@RequestParam Integer municipioId)
 			throws ParseException {

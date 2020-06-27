@@ -107,7 +107,7 @@ public class ExpedienteController {
 		return mav;
 	}
 
-	// Filtrar centros escolares por municipio
+	
 
 	// probando
 	@RequestMapping(value = "/getAlumnos", method = RequestMethod.GET)
