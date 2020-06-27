@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.uca.capas.pfnc.domain.Alumno;
 import com.uca.capas.pfnc.domain.CentroEscolar;
 import com.uca.capas.pfnc.domain.Municipio;
+import com.uca.capas.pfnc.dto.AlumnoPromedioDTO;
 import com.uca.capas.pfnc.dto.CentroEscolarDTO;
 import com.uca.capas.pfnc.service.AlumnoService;
 import com.uca.capas.pfnc.service.CentroEscolarService;
@@ -56,7 +57,7 @@ public class ExpedienteController {
 	
     @RequestMapping("/getExpedientes")
     public ModelAndView buscarClientes(@RequestParam(required = false) String nombre){
-        List<Alumno> alumnos = alumnoService.findByNombreOrApel(nombre);
+        List<AlumnoPromedioDTO> alumnos = alumnoService.findByNombreOrApelPromedio(nombre);
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("alumnos", alumnos);

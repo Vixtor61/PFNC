@@ -28,7 +28,7 @@ public class Cursa {
 	    
 	    @NotNull
 	    @Column(name = "nota")
-	    private int nota;
+	    private Double nota;
 	    
 	    @NotNull
 	    @Column(name = "annio")
@@ -37,9 +37,6 @@ public class Cursa {
 	    @NotNull
 	    @Column(name = "ciclo")
 	    private int ciclo;
-	    
-	    
-	    
 
 		public CursaKey getId() {
 			return id;
@@ -67,11 +64,11 @@ public class Cursa {
 			this.materia = materia;
 		}
 
-		public int getNota() {
+		public Double getNota() {
 			return nota;
 		}
 
-		public void setNota(int nota) {
+		public void setNota(Double nota) {
 			this.nota = nota;
 		}
 

@@ -50,12 +50,12 @@
 								<span class="input-group-text">Nota</span>
 							</div>
 
-							<input type="number" th:field="*{nota}" placeholder="Juan"
+							<input type="number" th:field="*{nota}" min="0" max="10" step="0.01"
 								class="form-control">
 
 
 						</div>
-
+			
 						<div class="invalid-feedback">
 							<span th:errors="*{nota}" style="color: #e81505"></span>
 
@@ -71,7 +71,7 @@
 								<span class="input-group-text">Año</span>
 							</div>
 
-							<input type="number" th:field="*{annio}" placeholder="Juan"
+							<input type="number" th:field="*{annio}" placeholder="2005" min = "2005"
 								class="form-control">
 
 
@@ -86,15 +86,21 @@
 					
 					
 										
-								<div class="form-group">
+						<div class="form-group">
 
 						<div class="input-group is-invalid">
 							<div class="input-group-prepend">
 								<span class="input-group-text">Ciclo</span>
 							</div>
 
-							<input type="number" th:field="*{ciclo}" placeholder="Juan"
-								class="form-control">
+								
+										<select class="form-control" th:field="*{ciclo}"
+							id="cicloSelect">
+			
+							<option value="1" >01</option>
+							<option value="2" >02</option>
+							<option value="3" >03</option>
+						</select>
 
 
 						</div>
