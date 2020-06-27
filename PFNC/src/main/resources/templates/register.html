@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form th:action="@{/register}" th:object="${cuenta}" method="POST" enctype="utf8">
+    <div>
+        <label >Nombre</label>
+        <input th:field="*{nombre}"/>
+    	    <label >Apellido</label>
+        <input th:field="*{apellido}"/>
+        <label >password</label>
+        <input type="password" th:field="*{password}"/>
+        <label >username</label>
+        <input th:field="*{username}"/>
+        <label >Direc</label>
+        <input th:field="*{direccion}"/>
+        <label >fevha</label>
+        <input type="date" th:field="*{fechaNacimiento}"/>
+        <label >muni</label>
+            <input type="number" name="municipioId"/>
+       
+               <label >esta</label>
+            <input type="number" th:field="*{estado}"/>
+            
+               <label >tipo</label>
+            <input type="text" th:field="*{tipo}"/>
+       
+    
+    </div>
+    <div>
+    
+    <button type="submit" th:text="#{label.form.submit}">submit</button>
+</form>
+ 
+
+</body>
+</html>

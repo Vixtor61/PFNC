@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-@Table(schema = "spublic", name = "cuenta")
+@Table(schema = "public", name = "cuenta")
 public class Cuenta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,9 +36,8 @@ public class Cuenta {
 	@Column(name="apellido")
 	private String apellido;
 	
-	@NotNull(message = "El campo Fecha no puede quedar vacio")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Column(name = "fecha_nacimiento")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "fecha_nacimiento",columnDefinition = "DATE")
 	private LocalDate fechaNacimiento;
 	
 	
@@ -55,7 +54,7 @@ public class Cuenta {
 	@Column(name="username")
 	private String username;
 	
-	@Size(message= "el campo no debe contener mas de 30 caracteres",max = 30)
+
 	@NotEmpty(message = "Este campo no puede estar vacio")
 	@Column(name="password")
 	private String password;

@@ -3,8 +3,10 @@ package com.uca.capas.pfnc.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.dao.DataAccessException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.uca.capas.pfnc.domain.Cuenta;
@@ -14,8 +16,10 @@ import com.uca.capas.pfnc.repositories.CuentaRepository;
 public class CuentaServiceImpl implements CuentaService {
 	@Autowired
 	CuentaRepository cuentaRepository;
+	
 	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
+	PasswordEncoder passwordEncoder;
+
 	@Override
 	public Optional<Cuenta> findByUsername(String username) throws DataAccessException {
 		// TODO Auto-generated method stub
@@ -29,4 +33,5 @@ public class CuentaServiceImpl implements CuentaService {
 		cuentaRepository.save(cuenta);
 		
 	}
+
 }
