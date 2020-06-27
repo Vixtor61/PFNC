@@ -1,4 +1,4 @@
-package com.uca.capas.pfnc;
+package com.uca.capas.pfnc.config;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;

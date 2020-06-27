@@ -1,4 +1,4 @@
-package com.uca.capas.pfnc;
+package com.uca.capas.pfnc.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
