@@ -87,6 +87,15 @@ public class Cursa {
 		public void setCiclo(int ciclo) {
 			this.ciclo = ciclo;
 		}
+		
+		public String getResultadoDelegate() {
+			if(this.nota >= 6) {
+				return "Aprovado";
+			}else {
+				return "Reprovado";
+			}
+			
+		}
 
 
 	    

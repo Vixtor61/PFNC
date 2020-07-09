@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -18,60 +17,50 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
-<link th:href="@{/vendor/fontawesome/css/all.css}" rel="stylesheet" />
-<title>Lista de Expedientes</title>
 
+<script type="text/javascript" th:src="@{/js/centros.js}"></script>
+
+
+<title>Nuevo Exprediente</title>
 </head>
-<body>
 
+
+<body>
 	<div class="container-fluid">
+			<div th:replace="commons/navbar :: navbar" />
 		<div class="row">
 			<div th:replace="commons/sidebarTest :: sidebar" />
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-				<h1>Lista de Expedientes</h1>
-				<table class="table">
-					<thead>
-						<th>Accion</th>
-						<th>Nombre</th>
-						<th>Apellido</th>
-						<th>Materias Aprovadas</th>
-						<th>Materias Reprovadas</th>
-						<th>Promedio</th>
-					</thead>
 
-					<th:block th:each="alumno, row: ${alumnos}">
-						<tr>
-							<th><a th:href="@{'/coordinador/cursa/' + ${alumno.alumnoId}}"> <i
-									class="fas fa-edit fa-lg"></i>
-							</a>
-							
-							
-							<a th:href="@{'/coordinador/editarExpediente/' + ${alumno.alumnoId}}">
-									<i class="fa fa-search fa-lg" ></i>
-							</a>
-							
-							
-							
-							</th>
-							<th th:text="${alumno.nombre}" />
-							<th th:text="${alumno.apellido}" />
-							<th th:text="${alumno.aprovadas}" />
-							<th th:text="${alumno.reprovadas}" />
-							<th th:text="${alumno.promedio}" />
 
-						</tr>
-					</th:block>
+				<h1>Buscar Expediente</h1>
+					<form th:action="@{/coordinador/getExpedientes}" method="get">
 
-				</table>
+					<div class="form-group">
 
-				<form th:action="@{/}">
-					<input type="submit" value="regresar" class="btn btn-primary">
+						<label>Buscar Alumno por codigo</label>
+
+						<div class="input-group mb-3">
+
+							<input class="form-control" type="text" placeholder="nombre,apellido"
+								name="nombre">
+
+							<div class="input-group-prepend">
+							
+								<input type="submit" value="Buscar" class="btn btn-primary">
+								
+							</div>
+							
+						</div>
+						
+					</div>
+
 				</form>
+				
+				<a th:href="@{/coordinador/nuevoExpediente}" class="btn btn-primary">Nuevo Expediente</a>
 			</main>
 		</div>
 
-
 	</div>
-
 </body>
 </html>

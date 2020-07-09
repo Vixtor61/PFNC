@@ -36,4 +36,16 @@ public class CursaServiceImpl implements CursaService {
 		cursaRepository.save(cursa);
 	}
 	
+	@Override
+	public List<Cursa> findByAlumnoId(Integer alumnoId) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return cursaRepository.findByAlumnoAlumnoId(alumnoId);
+	}
+	
+	@Override
+	public Cursa findById(Integer alumnoId, Integer materiaId) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return cursaRepository.findByAlumnoAlumnoIdAndMateriaMateriaId(alumnoId, materiaId);
+	}
+	
 }

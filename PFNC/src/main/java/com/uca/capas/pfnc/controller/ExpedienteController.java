@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,7 +84,27 @@ public class ExpedienteController {
 
 		return mav;
 	}
+	
 
+	@RequestMapping(value = "/editarExpediente/{id}", method = RequestMethod.GET)
+	public ModelAndView editExpediente(@PathVariable("id") int alumnoId) {
+
+		List<CentroEscolar> centros = centroEscolarService.findAll();
+		List<Municipio> municipios = municipioService.findAll();
+		ModelAndView mav = new ModelAndView();
+		Alumno alumno = alumnoService.findOne(alumnoId);
+
+		mav.addObject("centros", centros);
+		mav.addObject("municipios", municipios);
+		mav.addObject("alumno", alumno);
+
+		mav.setViewName("editarExpediente");
+
+		return mav;
+	}
+
+	
+	
 	@RequestMapping(value = "/nuevoExpediente", method = RequestMethod.POST)
 	public ModelAndView nuevoExpedienteSave(@Valid @ModelAttribute Alumno alumno, BindingResult result,
 			@RequestParam Integer centroId) {
@@ -103,6 +124,19 @@ public class ExpedienteController {
 			mav.setViewName("index");
 
 		}
+
+		return mav;
+	}
+	
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView searchExpediente() throws ParseException {
+	
+
+
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("buscarExpedientes");
 
 		return mav;
 	}

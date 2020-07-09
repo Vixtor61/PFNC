@@ -27,7 +27,7 @@
 
 <body>
 	<div class="container-fluid">
-
+			<div th:replace="commons/navbar :: navbar" />
 		<div class="row">
 			<div th:replace="commons/sidebarTest :: sidebar" />
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
@@ -35,11 +35,11 @@
 
 				<h1>Ingresar Nuevo Expediente</h1>
 
-				<form th:action="@{/nuevoExpediente}" th:object="${alumno}"
+				<form th:action="@{/coordinador/nuevoExpediente}" th:object="${alumno}"
 					method="post">
 
 
-
+					<input type="hidden" th:value=${alumno.alumnoId} th:field="*{alumnoId}" >
 					<div class="form-group">
 
 
@@ -50,9 +50,9 @@
 
 
 
-							<input type="text" th:field="*{nombre}" placeholder="Juan"
+							<input type="text" th:value=${alumno.nombre} th:field="*{nombre}" placeholder="Juan"
 								class="form-control"> <input type="text"
-								th:field="*{apellido}" id="apellido" placeholder="Sanchez"
+								th:field="*{apellido}" th:value=${alumno.apellido} id="apellido" placeholder="Sanchez"
 								name="apellido" class="form-control">
 
 
@@ -83,7 +83,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="validatedInputGroupPrepend">Edad</span>
 							</div>
-							<input type="date" th:field="*{fechaNacimiento}" id="edad"
+							<input th:value=${alumno.fechaNacimiento} type="date" th:field="*{fechaNacimiento}" id="edad"
 								placeholder="18" class="form-control" name="edad">
 						</div>
 						<div class="invalid-feedback">
@@ -124,7 +124,7 @@
 								<span class="input-group-text">Direccion</span>
 							</div>
 
-							<input type="text" th:field="*{direccion}" placeholder="Juan"
+							<input type="text" th:value=${alumno.direccion} th:field="*{direccion}" placeholder="Juan"
 								class="form-control">
 
 
@@ -144,7 +144,7 @@
 								<span class="input-group-text">Tel Movil</span>
 							</div>
 
-							<input type="tel" th:field="*{telMovil}" class="form-control">
+							<input type="tel" th:value=${alumno.telMovil} th:field="*{telMovil}" class="form-control">
 
 
 						</div>
@@ -164,7 +164,7 @@
 								<span class="input-group-text">Tel Fijo</span>
 							</div>
 
-							<input type="tel" th:field="*{telFijo}" class="form-control">
+							<input type="tel" th:value=${alumno.telFijo} th:field="*{telFijo}" class="form-control">
 
 
 						</div>
@@ -183,7 +183,7 @@
 								<span class="input-group-text">Padre</span>
 							</div>
 
-							<input type="text" th:field="*{padre}" placeholder="Juan"
+							<input type="text" th:value=${alumno.padre} th:field="*{padre}" placeholder="Juan"
 								class="form-control">
 
 
@@ -205,7 +205,7 @@
 								<span class="input-group-text">madre</span>
 							</div>
 
-							<input type="text" th:field="*{madre}" placeholder="Juan"
+							<input type="text" th:value=${alumno.madre} th:field="*{madre}" placeholder="Juan"
 								class="form-control">
 
 
@@ -226,7 +226,7 @@
 								<span class="input-group-text">Carnet</span>
 							</div>
 
-							<input type="text" th:field="*{carnet}" placeholder="Juan"
+							<input type="text" th:value=${alumno.carnet} th:field="*{carnet}"  placeholder="Juan"
 								class="form-control">
 
 
@@ -274,7 +274,7 @@
 					</div>
 
 					<div class="form-group">
-						<select class="form-control" name="centro_id"
+						<select class="form-control" name="centroId"
 							id="centro_id_select">
 							<option value="none" selected disabled hidden>Select an
 								Option</option>

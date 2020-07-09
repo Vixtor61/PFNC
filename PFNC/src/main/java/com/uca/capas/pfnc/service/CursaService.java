@@ -13,6 +13,8 @@ public interface CursaService {
 	public List<Cursa> findAll() throws DataAccessException;
 	public Cursa findOne(Integer id) throws DataAccessException;
 	public void save(Cursa cursa) throws DataAccessException;
+	public List<Cursa> findByAlumnoId(Integer alumnoId) throws DataAccessException;
+	public Cursa findById(Integer alumnoId,Integer materiaId) throws DataAccessException;
 	//public List<CentroEscolarDTO> filterByMunicipio(Integer mun_id) throws DataAccessException;
 
 }

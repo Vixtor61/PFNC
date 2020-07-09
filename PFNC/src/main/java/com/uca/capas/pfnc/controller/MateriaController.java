@@ -32,7 +32,7 @@ public class MateriaController {
 	@Autowired
 	AlumnoService alumnoService;
 
-	@RequestMapping(value = "/cursa/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/cursa/add/{id}", method = RequestMethod.GET)
 	public ModelAndView viewSaveCursa(@PathVariable("id") int id) {
 
 		Alumno alumno = alumnoService.findOne(id);
@@ -60,9 +60,64 @@ public class MateriaController {
 
 		return mav;
 	}
+	
+	
+	@RequestMapping(value = "/cursa/edit/", method = RequestMethod.GET)
+	public ModelAndView viewSaveCursa(@RequestParam(value = "alumnoId") int alumnoId, @RequestParam(value = "materiaId") int materiaId ) {
+		ModelAndView mav = new ModelAndView();
+		Cursa cursa = cursaService.findById(alumnoId, materiaId);
+		Alumno alumno = alumnoService.findOne(alumnoId);
+
+		String fullName = alumno.getNombre() + " " + alumno.getApellido();
+
+		try {
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+
+		mav.addObject("fullName", fullName);
+		mav.addObject("alumnoId", alumnoId);
+		mav.addObject("materiaId", materiaId);
+		mav.addObject("cursa", cursa);
+		mav.setViewName("editMateriaCursa");
+
+		return mav;
+	}
+	
+	
+
+	@RequestMapping(value = "/cursa/{id}", method = RequestMethod.GET)
+	public ModelAndView getMaterias(@PathVariable("id") int id) {
+
+		Alumno alumno = alumnoService.findOne(id);
+
+		String fullName = alumno.getNombre() + " " + alumno.getApellido();
+		Integer alumnoId = alumno.getAlumnoId();
+		ModelAndView mav = new ModelAndView();
+
+		List<Cursa> cursas = cursaService.findByAlumnoId(id);
+
+		try {
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+
+		mav.addObject("fullName", fullName);
+		mav.addObject("alumnoId", alumnoId);
+		mav.addObject("cursas", cursas);
+		mav.setViewName("materias");
+
+		return mav;
+	}
 
 	@RequestMapping(value = "/cursa", method = RequestMethod.POST)
-	public ModelAndView SaveCursa(@Valid @ModelAttribute Cursa cursa, BindingResult result,
+	public ModelAndView saveCursa(@Valid @ModelAttribute Cursa cursa, BindingResult result,
 		@RequestParam(value = "alumnoId") int alumnoId, @RequestParam(value = "materiaId") int materiaId) {
 
 		CursaKey cursaKey = new CursaKey(alumnoId, materiaId);
