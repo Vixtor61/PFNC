@@ -107,6 +107,7 @@ public class MateriaController {
 			e.printStackTrace();
 
 		}
+		
 
 		mav.addObject("fullName", fullName);
 		mav.addObject("alumnoId", alumnoId);

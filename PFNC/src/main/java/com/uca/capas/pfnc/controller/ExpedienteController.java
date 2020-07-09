@@ -93,7 +93,10 @@ public class ExpedienteController {
 		List<Municipio> municipios = municipioService.findAll();
 		ModelAndView mav = new ModelAndView();
 		Alumno alumno = alumnoService.findOne(alumnoId);
-
+		Integer municipioId = alumno.getCentro_escolar().getMunicipio().getMunicipioId();
+		String municipioName = alumno.getCentro_escolar().getMunicipio().getNombre();
+		mav.addObject("actualMunicipioName",municipioName);
+		mav.addObject("actualMunicipioId",municipioId);
 		mav.addObject("centros", centros);
 		mav.addObject("municipios", municipios);
 		mav.addObject("alumno", alumno);
