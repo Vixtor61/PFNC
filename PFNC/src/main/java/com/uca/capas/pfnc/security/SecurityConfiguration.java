@@ -8,11 +8,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -36,31 +35,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        		
-                .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/coordinador/**").authenticated()
-                .antMatchers("/api/**").authenticated()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .and()
+		        .
+        		authorizeRequests()
+                	.antMatchers("/").permitAll()
+                	.antMatchers("/login**").permitAll()
+	                .antMatchers("/register").permitAll()
+	                .antMatchers("/coordinador/**").hasRole("USER")
+	                .antMatchers("/api/**").authenticated()
+	                .antMatchers("/admin/**").hasRole("ADMIN")
+	               .and()
                 .formLogin()
-                .loginPage("/login").permitAll()
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-                .and()    .sessionManagement()                          // 2
-                .maximumSessions(1)                         // 3
-                .maxSessionsPreventsLogin(false)          // 4
-                .expiredUrl("/login?expired")             // 5
-                .sessionRegistry(sessionRegistry());
-                
+	                .loginPage("/login").permitAll()
+	                .and()
+	                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").
+	                and()
+	             .sessionManagement()                          // 2
+			       	.maximumSessions(1) 
+			       	.maxSessionsPreventsLogin(true)
+			      
+			       ;   
+	            
+	               
 
     }
-    @Bean
-    public SessionRegistry sessionRegistry() {
-        SessionRegistry sessionRegistry = new SessionRegistryImpl();
-        return sessionRegistry;
-    }
+
     
     @Bean
     DaoAuthenticationProvider authenticationProvider(){
@@ -75,5 +73,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+    
+    public class SecurityWebInitializer extends AbstractSecurityWebApplicationInitializer {
+        @Override
+        protected boolean enableHttpSessionEventPublisher() {
+            return true;
+        }
     }
 }
