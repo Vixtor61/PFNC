@@ -11,13 +11,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uca.capas.pfnc.dto.CentroEscolarDTO;
+import com.uca.capas.pfnc.dto.MunicipioDTO;
 import com.uca.capas.pfnc.service.CentroEscolarService;
+import com.uca.capas.pfnc.service.MunicipioService;
 
 @RestController
 @RequestMapping("/api")
 public class RestApi {
 	@Autowired
 	CentroEscolarService centroEscolarService;
+	
+	@Autowired
+	MunicipioService municipioService;
 	
 
 	// Filtrar centros escolares por municipio
@@ -28,6 +33,15 @@ public class RestApi {
 		List<CentroEscolarDTO> clientes = centroEscolarService.filterByMunicipio(municipioId);
 
 		return clientes;
+	}
+	
+	@RequestMapping(value = "/getMunicipiosByDept", method = RequestMethod.GET)
+	public @ResponseBody List<MunicipioDTO> getMunicipiosByDept(@RequestParam Integer departamentoId)
+			throws ParseException {
+		
+		List<MunicipioDTO> municipioDTOs = municipioService.findByDeptId(departamentoId);
+
+		return municipioDTOs;
 	}
 
 }

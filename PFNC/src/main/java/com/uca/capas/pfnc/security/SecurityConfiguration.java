@@ -1,6 +1,7 @@
 package com.uca.capas.pfnc.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -8,10 +9,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -38,26 +42,36 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		        .
         		authorizeRequests()
                 	.antMatchers("/").permitAll()
-                	.antMatchers("/login**").permitAll()
-	                .antMatchers("/register").permitAll()
+                	.antMatchers("/login**").anonymous()
+	                .antMatchers("/register").anonymous()
 	                .antMatchers("/coordinador/**").hasRole("USER")
-	                .antMatchers("/api/**").authenticated()
+	                .antMatchers("/api/**").permitAll()
 	                .antMatchers("/admin/**").hasRole("ADMIN")
 	               .and()
                 .formLogin()
-	                .loginPage("/login").permitAll()
+	                .loginPage("/login").permitAll(false)
 	                .and()
 	                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").
 	                and()
 	             .sessionManagement()                          // 2
 			       	.maximumSessions(1) 
-			       	.maxSessionsPreventsLogin(true)
+			       	.maxSessionsPreventsLogin(true) .sessionRegistry(sessionRegistry());
 			      
-			       ;   
-	            
+			    
 	               
 
     }
+    
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        SessionRegistry sessionRegistry = new SessionRegistryImpl();
+        return sessionRegistry;
+    }
+    @Bean
+    public static ServletListenerRegistrationBean httpSessionEventPublisher() {
+        return new ServletListenerRegistrationBean(new HttpSessionEventPublisher());
+    }
+
 
     
     @Bean

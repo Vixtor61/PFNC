@@ -30,6 +30,7 @@ public class CuentaServiceImpl implements CuentaService {
 	public void save(Cuenta cuenta) throws DataAccessException {
 		// TODO Auto-generated method stub
 		cuenta.setPassword(passwordEncoder.encode(cuenta.getPassword()));
+	
 		cuentaRepository.save(cuenta);
 		
 	}
