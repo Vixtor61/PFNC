@@ -75,7 +75,7 @@ public class ExpedienteController {
 		List<Municipio> municipios = municipioService.findAll();
 		ModelAndView mav = new ModelAndView();
 		Alumno alumno = new Alumno();
-
+		
 		mav.addObject("centros", centros);
 		mav.addObject("municipios", municipios);
 		mav.addObject("alumno", alumno);
@@ -95,6 +95,8 @@ public class ExpedienteController {
 		Alumno alumno = alumnoService.findOne(alumnoId);
 		Integer municipioId = alumno.getCentro_escolar().getMunicipio().getMunicipioId();
 		String municipioName = alumno.getCentro_escolar().getMunicipio().getNombre();
+		CentroEscolar centro = alumno.getCentro_escolar();
+		mav.addObject("centro", centro);
 		mav.addObject("actualMunicipioName",municipioName);
 		mav.addObject("actualMunicipioId",municipioId);
 		mav.addObject("centros", centros);
@@ -111,14 +113,33 @@ public class ExpedienteController {
 	@RequestMapping(value = "/nuevoExpediente", method = RequestMethod.POST)
 	public ModelAndView nuevoExpedienteSave(@Valid @ModelAttribute Alumno alumno, BindingResult result,
 			@RequestParam Integer centroId) {
-
+		
+		List<Municipio> municipios = municipioService.findAll();
 		ModelAndView mav = new ModelAndView();
 		CentroEscolar centroEscolar = centroEscolarService.findOne(centroId);
 
 		if (result.hasErrors()) {
-			alumno = new Alumno();
+			//alumno = new Alumno();
+			mav.addObject("municipios", municipios);
+			if(alumno.getAlumnoId()==null) {
+				
+				mav.setViewName("agregarExpediente");
+				
+			}else {
+				List<CentroEscolar> centros = centroEscolarService.findAll();
+				alumno = alumnoService.findOne(alumno.getAlumnoId());
+				Integer municipioId = alumno.getCentro_escolar().getMunicipio().getMunicipioId();
+				String municipioName = alumno.getCentro_escolar().getMunicipio().getNombre();
+				mav.addObject("centros", centros);
+				CentroEscolar centro = alumno.getCentro_escolar();
+				mav.addObject("centro", centro);
+				mav.addObject("actualMunicipioName",municipioName);
+				mav.addObject("actualMunicipioId",municipioId);
+				
+				mav.setViewName("editarExpediente");
+			}
 
-			mav.setViewName("agregarExpediente");
+			
 
 		} else {
 			alumno.setCentro_escolar(centroEscolar);
