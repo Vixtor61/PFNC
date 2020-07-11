@@ -1,18 +1,49 @@
     <nav th:fragment="sidebar" id="sidebar"  class="col-md-3 col-lg-2 d-md-block flex-fill bg-light sidebar  collapse ">
       <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" th:href="@{/coordinador/nuevoExpediente}">
+        
+        
+          <li sec:authorize="hasRole('ROLE_USER')" class="nav-item">
+            <a class="nav-link active" th:href="@{/coordinador/}">
+              <span data-feather="home"></span>
+              Coordinador<span class="sr-only">(current)</span>
+            </a>
+          </li>
+          
+          <li sec:authorize="hasRole('ROLE_USER')" class="nav-item">
+            <a class="nav-link active" th:href="@{/coordinador/nuevoExpediente/}">
               <span data-feather="home"></span>
               Nuevo Expediente<span class="sr-only">(current)</span>
             </a>
           </li>
-             <li class="nav-item">
-            <a class="nav-link active" th:href="@{/coordinador/getAlumnos}">
+             <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+            <a class="nav-link active" th:href="@{/admin/}">
               <span data-feather="home"></span>
-              Alumnos<span class="sr-only">(current)</span>
+              Administrador<span class="sr-only">(current)</span>
             </a>
           </li>
+          
+            
+             <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+            <a class="nav-link active" th:href="@{/admin/materias}">
+              <span data-feather="home"></span>
+              Materias<span class="sr-only">(current)</span>
+            </a>
+          </li>
+             <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+            <a class="nav-link active" th:href="@{/admin/centros}">
+              <span data-feather="home"></span>
+              Centros Escolares<span class="sr-only">(current)</span>
+            </a>
+          </li>
+          
+            <li  sec:authorize="isAnonymous()" class="nav-item active">
+        <a class="nav-link"   th:href="@{/register}">Registrarse <span class="sr-only">(current)</span></a>
+      </li>
+          
+          
+ 
+		
         
         </ul>
 

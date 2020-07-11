@@ -56,8 +56,8 @@
 					<th:block th:each="cursa, row: ${cursas}">
 						<tr>
  
-							<th><a th:href="@{/coordinador/cursa/edit/(materiaId=${cursa.materia.materiaId},alumnoId=${alumnoId}) }"> <i
-									class="fas fa-edit fa-lg"></i>
+							<th><a th:href="@{/coordinador/cursa/edit/(materiaId=${cursa.materia.materiaId},alumnoId=${alumnoId}) }"> 
+								<i class="fas fa-pencil-alt"></i>
 							</a></th>
 
 							<th th:text="${cursa.materia.nombre}" />

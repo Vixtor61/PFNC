@@ -44,7 +44,10 @@
 
 					<th:block th:each="c, row: ${centros}">
 						<tr>
-							<th th:text="Editar" />
+							
+							<th><a th:href="@{/admin/centros/edit/(centroId=${c.centroEscolarId}) }"> 
+								<i class="fas fa-pencil-alt"></i>
+							</a></th>
 							<th th:text="${c.nombre}" />
 							<th th:text="${c.municipio.nombre}" />
 						</tr>

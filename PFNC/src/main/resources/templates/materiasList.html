@@ -43,7 +43,10 @@
 
 					<th:block th:each="m, row: ${materias}">
 						<tr>
-							<th th:text="Editar" />
+							
+							<th><a th:href="@{/admin/materias/edit/(materiaId=${m.materiaId}) }"> 
+								<i class="fas fa-pencil-alt"></i>
+							</a></th>
 							<th th:text="${m.nombre}" />
 						</tr>
 					</th:block>
